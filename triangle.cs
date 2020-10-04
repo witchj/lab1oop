@@ -29,7 +29,7 @@ namespace classt
             this.b = b;
             this.c = c;
         }
-        public virtual bool Exist()
+        public bool Exist()
         {
             if (((a + b > c) && (b + c > a) && (c + a > b)) == false)
             {
