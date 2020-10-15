@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 namespace arrays
 {
     class array
     {
+
         static void Main(string[] args)
         {
 
@@ -24,9 +25,10 @@ namespace arrays
                 Console.Write(S[i] + " ");
             }
 
-            int maxValue = S.Max();    //найти макс значение
-            int maxIndex = S.ToList().IndexOf(maxValue); //найти макс индекс
+            int maxValue = S.Max();
+            int maxIndex = S.ToList().IndexOf(maxValue);
             Console.WriteLine("Ваш максимум {0}, місцезнаходження {1}", maxValue, maxIndex);
+
             int[,] E;
             E = new int[maxValue, maxValue];
             for (int i = 0; i < maxValue; i++)
@@ -36,6 +38,7 @@ namespace arrays
                     E[i, j] = rand.Next(1, 10);
                 }
             }
+
             Console.WriteLine("Вміст E:");
             for (int i = 0; i < maxValue; i++)
             {
@@ -46,7 +49,6 @@ namespace arrays
                 Console.WriteLine();
             }
 
-
             int[][] M = new int[n][];
 
             for (int i = 0; i < n; i++)
@@ -55,14 +57,24 @@ namespace arrays
             }
 
             Console.WriteLine("Ваша матриця М+Е:");
-            for (int i = 0; i < maxValue; i++)
+            try
             {
-                for (int j = 0; j < M[i].Length; j++)
+
+                for (int i = 0; i < S.Length; i++)
                 {
-                    M[i][j] = E[i, j];
-                    Console.Write(M[i][j] + " ");
+                    for (int j = 0; j < M[i].Length; j++)
+                    {
+                        M[i][j] = E[i, j];
+                        Console.Write(M[i][j] + " ");
+                    }
+                    Console.WriteLine();
                 }
-                Console.WriteLine();
+
+            }
+
+            catch (IndexOutOfRangeException err)
+            {
+                Console.WriteLine("Exception caught with indexes, error message: {3} ", err);
             }
 
             List<int> list_indexes_to_zero = new List<int>();
@@ -82,20 +94,18 @@ namespace arrays
                 Console.WriteLine(indexes_to_zero[j]);
                 for (int i = 0; i < M[indexes_to_zero[j]].Length; i++)
                 {
-
                     M[indexes_to_zero[j]][i] = 0;
                 }
             }
+
             Console.WriteLine("Ваша матриця М+Е пiсля обнулення:");
             for (int i = 0; i < S.Length; i++)
             {
                 for (int j = 0; j < M[i].Length; j++)
                 {
-
                     Console.Write(M[i][j] + " ");
                 }
                 Console.WriteLine();
-
             }
             Console.ReadKey();
         }
